@@ -1,5 +1,7 @@
 package com.android.automation.training;
 
+import com.android.automation.training.base.PageBaseObject;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
@@ -7,37 +9,91 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class AppiumTest {
+public class AppiumTest extends PageBaseObject {
 
-  @Test
-  public void loginWithValidData(){
+  public AndroidDriver<AndroidElement> androidDriverInit() {
     DesiredCapabilities caps = new DesiredCapabilities();
     caps.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
     caps.setCapability(MobileCapabilityType.DEVICE_NAME, "device");
-    caps.setCapability(MobileCapabilityType.UDID,"emulator-5554");
-    caps.setCapability(MobileCapabilityType.APP,"D://app/app.apk");
-    caps.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UIAutomator2");
-    caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT,120);
-    caps.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS,true);
+    caps.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+    caps.setCapability(MobileCapabilityType.APP, "D://app/app.apk");
+    caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UIAutomator2");
+    caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
+    caps.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
+    caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.alfamart.alfagift.debug");
 
     //url appium
     String url = "http://127.0.0.1:4723";
     //initialize appium
     AndroidDriver<AndroidElement> driver = null;
-    try{
-      driver = new AndroidDriver<>(new URL(url),caps);
+    try {
+      driver = new AndroidDriver<>(new URL(url), caps);
 
-    }catch (MalformedURLException e){
+    } catch (MalformedURLException e) {
       e.printStackTrace();
     }
     //implicitly wait
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    return driver;
+  }
 
+  @Test
+  public void verifyWelcomeScreenIsWellDisplayedAfterLaunchedApp() {
+    //call driver method to create session (mandatory step to run automation)
+    AndroidDriver<AndroidElement> driver = androidDriverInit();
+    //Initialize locators & find the element on the welcome screen
+    By IMG_ALFAMART = MobileBy.id("iv_logo");
+    AndroidElement findAlfaImage = driver.findElement(IMG_ALFAMART);
+    By BUTTON_PROMO = MobileBy.id("btn_promo");
+    AndroidElement findButtonPromo = driver.findElement(BUTTON_PROMO);
+    By BUTTON_STORE = MobileBy.id("btn_store");
+    AndroidElement findStoreBtn = driver.findElement(BUTTON_STORE);
+    By LABEL_WELCOME_SCREEN = MobileBy.id("txt_title");
+    AndroidElement findWelcomeScreen = driver.findElement(LABEL_WELCOME_SCREEN);
 
+    //call the methods to perform action & verify the acceptance criteria on the welcome screen
+    boolean imgAlfaDisplayed = findAlfaImage.isDisplayed();
+    Assertions.assertTrue(imgAlfaDisplayed, "Alfamart icon is not exist!");
+
+    boolean btnPromoDisplayed = findButtonPromo.isDisplayed();
+    Assertions.assertTrue(btnPromoDisplayed, "Button Promo is not exist!");
+
+    Assertions.assertTrue(findStoreBtn.isDisplayed(), "Button Store is not exist!");
+    Assertions.assertEquals("Selamat Datang di Alfagift!", findWelcomeScreen.getText(),
+        "Format Greeting Salah!");
+
+  }
+
+  //Sample test using Page Object Model
+  @Test
+  public void loginWithValidData() {
+    //call driver method to create session (mandatory step to run automation)
+    initialize();
+    //click enter to go to login screen
+    By BUTTON_ENTER = MobileBy.id("btn_login");
+    click(BUTTON_ENTER);
+
+    //input username
+    By INPUT_USERNAME = MobileBy.id("etPhonePontaNumber");
+    input(INPUT_USERNAME, "0812858882277");
+
+    //input password
+    By INPUT_PASSWORD = MobileBy.id("etPassword");
+    input(INPUT_PASSWORD, "12345678");
+
+    //click continue
+    By BUTTON_CONTINUE = MobileBy.id("btnNext");
+    click(BUTTON_CONTINUE);
+
+    //verify user successfully enter to home page
+    By LABEL_WELCOME_SCREEN = MobileBy.id("tv_title");
+    Assertions.assertEquals("Selamat Datang di Alfagift",getText(LABEL_WELCOME_SCREEN),"Failed to go to Home Page!");
 
   }
 

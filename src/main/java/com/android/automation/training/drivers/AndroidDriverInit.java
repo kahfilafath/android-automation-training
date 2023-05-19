@@ -12,22 +12,23 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class AndroidDriverInit {
   public static AndroidDriver<AndroidElement> driver;
-
-  public static void initialize(){
+  public void initialize(){
     //desired capabilities
     DesiredCapabilities caps = new DesiredCapabilities();
     caps.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
     caps.setCapability(MobileCapabilityType.DEVICE_NAME, "device");
     caps.setCapability(MobileCapabilityType.UDID, "emulator-5554");
-    caps.setCapability(MobileCapabilityType.APP, "/Users/GLI 2/Dekstop/app.apk");
+    caps.setCapability(MobileCapabilityType.APP, "D://app/app.apk");
     caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UIAutomator2");
     //additional
     caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
     caps.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
+    caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.alfamart.alfagift.debug");
 
     //url appium
     String url = "http://localhost:4723";
     //inisialisasi appium
+    //AndroidDriver<AndroidElement> driver = null;
     try {
       driver = new AndroidDriver<>(new URL(url), caps);
     } catch (MalformedURLException e) {
@@ -36,7 +37,6 @@ public class AndroidDriverInit {
 
     //implict wait
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
   }
 
   public static void quit(){
