@@ -15,7 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class AppiumTest extends PageBaseObject {
+public class AppiumTest_Kahfi extends PageBaseObject {
 
   public AndroidDriver<AndroidElement> androidDriverInit() {
     DesiredCapabilities caps = new DesiredCapabilities();
