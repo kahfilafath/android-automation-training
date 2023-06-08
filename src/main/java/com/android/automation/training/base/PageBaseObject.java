@@ -4,6 +4,8 @@ import com.android.automation.training.drivers.AndroidDriverInit;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import java.util.List;
+
+import io.cucumber.plugin.event.Result;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -31,10 +33,9 @@ public class PageBaseObject extends AndroidDriverInit {
   public String getText(By locator){
     return find(locator).getText();
   }
-  public List<AndroidElement> findAll(By locator) {
+  public List<Result> findAll(By locator) {
     return getDriver().findElements(locator);
   }
-
 
   public void waitUntilPresent(By locator) {
     WebDriverWait wait = new WebDriverWait(driver, 15);

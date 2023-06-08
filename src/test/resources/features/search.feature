@@ -14,7 +14,7 @@ Feature: Search
 
     Given user on the HomePage
     When user click field search
-    And user search the product “ultra milk susu uht coklat” on the search bar
-    And user see the product suggestion “ultra milk susu uht coklat” below the search bar
+    And user search the product "ultra milk susu uht coklat" on the search bar
+    And user see the product suggestion "ultra milk susu uht coklat" below the search bar
     And user click the product suggestion below the search bar
-    Then user should discover the product “ultra milk susu uht coklat” on the search result page
+    Then user should discover the product "ultra milk susu uht coklat" on the search result page
