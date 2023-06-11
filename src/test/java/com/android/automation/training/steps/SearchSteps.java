@@ -3,12 +3,14 @@ package com.android.automation.training.steps;
 import com.android.automation.training.base.PageBaseObject;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidElement;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.messages.types.Product;
 import io.cucumber.plugin.event.Result;
+
 
 import static org.mockito.ArgumentMatchers.matches;
 
@@ -66,15 +68,28 @@ public class SearchSteps extends PageBaseObject {
     public void userShouldDiscoverTheProductOnTheSearchResultPage(String title_product) {
 
      By RESULT = MobileBy.id("txt_product_name");
-        findAll(RESULT).stream()
-        //mapping element to get text
-        .map(element -> element.getText())
-        //collect all text to arraylist
-        .collect(Collectors.toCollection(ArrayList::new));
-        //looping arraylist
-        for (String test : ArrayList) {
+        findAll(RESULT);
+        streamElement(RESULT, title_product);
+        for (String test : collect) {
             MatcherAssert.assertThat("Produk tidak ditemukan",test,Matchers.containsString(title_product));
         }
+
+        //mapping element to get text
+//        .map(element -> element.getTextAll())
+        //collect all text to arraylist
+        //.collect(Collectors.toCollection(ArrayList::new));
+        //looping arraylist
+       for (String text : collect ) {
+            MatcherAssert.assertThat("Produk tidak ditemukan",text,Matchers.containsString(title_product));
+        }
+        // for (String test :  ) {
+        //     MatcherAssert.assertThat("Produk tidak ditemukan",test,Matchers.containsString(title_product));
+        // }
+        
+       }
+        // for (String test :  ) {
+        //     MatcherAssert.assertThat("Produk tidak ditemukan",test,Matchers.containsString(title_product));
+        // }
 
 
 //        for (String test : disProduct) {
@@ -148,7 +163,7 @@ public class SearchSteps extends PageBaseObject {
 //          MatcherAssert.assertThat("messge",test,Matchers.containsString(""));
  
 //     }
- }
+
 
 //collect = findAll(RESULT).stream()
 //    //mapping element to get text

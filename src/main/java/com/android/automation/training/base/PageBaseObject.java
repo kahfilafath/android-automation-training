@@ -3,9 +3,10 @@ package com.android.automation.training.base;
 import com.android.automation.training.drivers.AndroidDriverInit;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import java.util.List;
 
-import io.cucumber.plugin.event.Result;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -33,8 +34,25 @@ public class PageBaseObject extends AndroidDriverInit {
   public String getText(By locator){
     return find(locator).getText();
   }
-  public List<Result> findAll(By locator) {
-    return getDriver().findElements(locator);
+
+  public AndroidElement findAll(By locator){
+    return getDriver().findElement(locator);
+  }
+//wrap the elements into collection of arraylist with stream method and map it to get the text
+  // public void stream(By locator, String text){
+  //   List<AndroidElement> elements = getDriver().findElements(locator);
+  //   elements.stream().collect(Collectors.toList());
+    
+  // }
+
+  // public void stream(By locator, String text) {
+  //   List<AndroidElement> elements = getDriver().findElements(locator);
+  //   elements.stream().map(element -> element.getText()).collect(Collectors.toList());
+  // }
+
+  public void streamElement(By locator, String text) {
+    List<AndroidElement> elements = getDriver().findElements(locator);
+    elements.stream().map(element -> element.getText()).collect(Collectors.toList());
   }
 
   public void waitUntilPresent(By locator) {
