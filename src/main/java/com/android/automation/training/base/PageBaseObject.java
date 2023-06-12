@@ -33,9 +33,10 @@ public class PageBaseObject extends AndroidDriverInit {
   public String getText(By locator){
     return find(locator).getText();
   }
-  public List<Result> findAll(By locator) {
+  public List<AndroidElement> findAll(By locator) {
     return getDriver().findElements(locator);
   }
+
 
   public void waitUntilPresent(By locator) {
     WebDriverWait wait = new WebDriverWait(driver, 15);

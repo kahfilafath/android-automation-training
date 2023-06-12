@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.FindAll;
+import org.xml.sax.Locator;
 
 public class SearchSteps extends PageBaseObject {
 
@@ -66,15 +67,14 @@ public class SearchSteps extends PageBaseObject {
     public void userShouldDiscoverTheProductOnTheSearchResultPage(String title_product) {
 
      By RESULT = MobileBy.id("txt_product_name");
-        findAll(RESULT).stream()
-        //mapping element to get text
-        .map(element -> element.getText())
-        //collect all text to arraylist
-        .collect(Collectors.toCollection(ArrayList::new));
-        //looping arraylist
-        for (String test : ArrayList) {
-            MatcherAssert.assertThat("Produk tidak ditemukan",test,Matchers.containsString(title_product));
+        List<String> disProduct = findAll(RESULT).stream().map(RemoteWebElement::getText).collect(Collectors.toList());
+        for (String string : disProduct) {
+            MatcherAssert.assertThat("Produk tidak ditemukan",string.toLowerCase(),Matchers.containsString(title_product));
         }
+
+        // for (String test : disProduct) {
+        //     MatcherAssert.assertThat("Produk tidak ada", test, Matchers.containsString(title_product));
+        // }
 
 
 //        for (String test : disProduct) {
