@@ -2,12 +2,22 @@ package com.android.automation.training.steps;
 
 import com.android.automation.training.base.PageBaseObject;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.AndroidElement;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.hamcrest.Matcher;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebElement;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SearchSteps extends PageBaseObject {
 
@@ -67,6 +77,15 @@ public class SearchSteps extends PageBaseObject {
     @Then("user should discover the product {string} on the search result page")
     public void userShouldDiscoverTheProductOnTheSearchResultPage(String title_product) {
         By RESULT = MobileBy.id("txt_product_name");
-        Assertions.assertEquals(title_product,getText(RESULT),"Failed load product");
+        List<String> collect = findAll(RESULT).stream().map(RemoteWebElement::getText).collect(Collectors.toList());
+            for (String test : collect) {
+            MatcherAssert.assertThat("Produk tidak ada", test, Matchers.containsString(title_product));
+            }
+//        findAll(RESULT).stream().map().collect(Collectors.toCollection());
+//        for (String element: ArrayList) {
+//            MatcherAssert.assertThat("Produk tidak ada", element, Matchers.containsString(title_product));
+//        }
+
+//        Assertions.assertEquals(title_product,getText(RESULT),"Failed load product");
     }
 }
