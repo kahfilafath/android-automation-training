@@ -38,17 +38,7 @@ public class PageBaseObject extends AndroidDriverInit {
   public AndroidElement findAll(By locator){
     return getDriver().findElement(locator);
   }
-//wrap the elements into collection of arraylist with stream method and map it to get the text
-  // public void stream(By locator, String text){
-  //   List<AndroidElement> elements = getDriver().findElements(locator);
-  //   elements.stream().collect(Collectors.toList());
-    
-  // }
 
-  // public void stream(By locator, String text) {
-  //   List<AndroidElement> elements = getDriver().findElements(locator);
-  //   elements.stream().map(element -> element.getText()).collect(Collectors.toList());
-  // }
 
   public void streamElement(By locator, String text) {
     List<AndroidElement> elements = getDriver().findElements(locator);
