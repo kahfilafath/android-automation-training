@@ -17,8 +17,9 @@ public class AndroidDriverInit {
     DesiredCapabilities caps = new DesiredCapabilities();
     caps.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
     caps.setCapability(MobileCapabilityType.DEVICE_NAME, "device");
-    caps.setCapability(MobileCapabilityType.UDID, "emulator-5554");
-    caps.setCapability(MobileCapabilityType.APP, "D://app/app.apk");
+    // caps.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+    caps.setCapability(MobileCapabilityType.UDID, "90fa84ca");
+    caps.setCapability(MobileCapabilityType.APP, "E://app/app_revamp2.apk");
     caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UIAutomator2");
     //additional
     caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
