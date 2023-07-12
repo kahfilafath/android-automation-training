@@ -1,9 +1,7 @@
-Feature: Login
+Feature: Login Alfagift
 
-Scenario: Login Valid and verify welcome screen
 
-    Given user click Login on Login screen
-    And user input username
-    And user input Password 
-    When user click button Login
-    Then user displayed welcome screen
+Scenario: Login Valid
+    @Given User on welcome screen
+    @And User Input "Phone NumberValid" 
+    @And 
