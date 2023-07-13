@@ -9,7 +9,11 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Driver;
 import java.util.concurrent.TimeUnit;
+
+import javax.swing.text.html.parser.Element;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -103,78 +107,83 @@ public class AppiumTest extends PageBaseObject {
     By LABEL_WELCOME_SCREEN = MobileBy.id("tv_title");
     Assertions.assertEquals("Selamat Datang di Alfagift",getText(LABEL_WELCOME_SCREEN),"Failed to go to Home Page!");
     
-    By Buttonnanti = MobileBy.id("btn_later");
-    AndroidElement findButtonnanti = driver.findElement(Buttonnanti);
-    boolean ButtonnantiDisplayed = findButtonnanti.isDisplayed();
-    Assertions.assertTrue(ButtonnantiDisplayed);
-    click(Buttonnanti);
+    By BUTTON_LATER = MobileBy.id("btn_later");
+    AndroidElement findButtonLater = driver.findElement(BUTTON_LATER);
+    boolean ButtonLaterDisplayed = findButtonLater.isDisplayed();
+    Assertions.assertTrue(ButtonLaterDisplayed);
+    click(BUTTON_LATER);
 
     
   }
   
-  // test add to cart in PDP page
+  // Test Add To Cart on PDP page
   @Test
-  public void add_to_cart() {
+  public void AddToCartPDP() {
     
     //call method loginValid
     loginWithValidData();
    
-    //click button shopping
+    //Click Button Shopping
     By ICON_SHOPPING = MobileBy.id("iv_shopping") ;
     waitUntilPresent(ICON_SHOPPING);
     click(ICON_SHOPPING);
 
-    // choose product
+    // Choose Product
     By PRODUCT = MobileBy.id("card_product");
-    AndroidElement findPRODUCT = driver.findElement(PRODUCT) ;
-    boolean PRODUCTDisplayed = findPRODUCT.isDisplayed();
-    Assertions.assertTrue(PRODUCTDisplayed);
+    AndroidElement findProduct = driver.findElement(PRODUCT) ;
+    boolean ProductDisplayed = findProduct.isDisplayed();
+    Assertions.assertTrue(ProductDisplayed);
     click(PRODUCT);
 
   
-    //Addtion Quantity
-    By Increase = MobileBy.id("imgIncreaseQty");
-    waitUntilPresent(Increase);
-    click(Increase);
+    //Addtion Quantity on PDP page
+    By INCREASE = MobileBy.id("imgIncreaseQty");
+    waitUntilPresent(INCREASE);
+    click(INCREASE);
 
-    //Click button ADD TO CART IN PDP Page
+    //Click Button Add To Cart on PDP page
     By ICON_ADD = MobileBy.id("btn_add_to_cart");
-    waitUntilPresent(ICON_ADD);
+    AndroidElement findIconAdd = driver.findElement(ICON_ADD);
+    boolean IconAddDisplayed = findIconAdd.isDisplayed();
+    Assertions.assertTrue(IconAddDisplayed);
     click(ICON_ADD);
 
-     //Click button Backet
+     //Click Button Backet After redirect to Shopping Page
     By ICON_BACKET = MobileBy.id("iv_basket");
     waitUntilPresent(ICON_BACKET);
     click(ICON_BACKET);
 
-    //Verify Object In page bucket
-    By STOCKTOKO = MobileBy.id("tv_seller");
-    AndroidElement findSTOCKTOKO = driver.findElement(STOCKTOKO);
-    boolean STOCKTOKODisplayed = findSTOCKTOKO.isDisplayed();
-    Assertions.assertTrue(STOCKTOKODisplayed);
+    //Verify Object on Page Bucket
+    By STOCK_TOKO = MobileBy.id("tv_seller");
+    AndroidElement findStockToko = driver.findElement(STOCK_TOKO);
+    boolean StockTokoDisplayed = findStockToko.isDisplayed();
+    Assertions.assertTrue(StockTokoDisplayed);
   
   }
-  //Test add to cart in shopping page
+  //Test Add To Cart on Shopping Page
     @Test
-  public void add_to_cart_shoopingpage() {
+  public void AddToCartShoopingPage() {
     
     //call method loginValid
     loginWithValidData();
    
-    //click button shopping
+    //click Icon shopping on shopping page
     By ICON_SHOPPING = MobileBy.id("iv_shopping") ;
     waitUntilPresent(ICON_SHOPPING);
     click(ICON_SHOPPING);
 
-    // choose product
+    // Choose Product on shopping page
     By PRODUCT = MobileBy.id("txt_product_name");
-    AndroidElement findAllPRODUCT = driver.findElement(PRODUCT);
-    boolean PRODUCTDisplayed = findAllPRODUCT.isDisplayed();
-    Assertions.assertTrue(PRODUCTDisplayed);
+    AndroidElement findAllProduct = driver.findElement(PRODUCT);
+    boolean ProductDisplayed = findAllProduct.isDisplayed();
+    Assertions.assertTrue(ProductDisplayed);
   
     
-    //Click button ADD TO CART IN SHOPPING PAGE
+    //Click Button Add To Cart on Shopping Page
     By ICON_ADD = MobileBy.id("btn_add_to_cart");
+    AndroidElement findIconAdd = driver.findElement(ICON_ADD);
+    boolean IconAddDisplayed = findIconAdd.isDisplayed();
+    Assertions.assertTrue(IconAddDisplayed);
     click(ICON_ADD) ;
 
 
@@ -185,38 +194,40 @@ public class AppiumTest extends PageBaseObject {
 
 
     //Verify Object In page bucket
-    By STOCKTOKO = MobileBy.id("tv_seller");
-    AndroidElement findSTOCKTOKO = driver.findElement(STOCKTOKO);
-    boolean STOCKTOKODisplayed = findSTOCKTOKO.isDisplayed();
-    Assertions.assertTrue(STOCKTOKODisplayed);
+    By STOCK_TOKO = MobileBy.id("tv_seller");
+    AndroidElement findStockToko = driver.findElement(STOCK_TOKO);
+    boolean StockTokoDisplayed = findStockToko.isDisplayed();
+    Assertions.assertTrue(StockTokoDisplayed);
   }
 
 
-  //search product add to cart
+  //Search Product Add to Cart
   @Test
-  public void add_to_cart_searchproduct() {
+  public void AddToCartSearchProduct() {
     
     //call method loginValid
     loginWithValidData();
 
     //search product
-    By searchproduct = MobileBy.id("edt_search") ;
-    click(searchproduct);
-    driver.findElement(By.id("edt_search")).sendKeys("Bimoli");
+    By SEARCH_PRODUCT = MobileBy.id("edt_search");
+    click(SEARCH_PRODUCT);
+    driver.findElement(SEARCH_PRODUCT).sendKeys("Bimoli");
     driver.executeScript("mobile:performEditorAction",ImmutableMap.of("action", "search"));
   
 
     //choose product
     By PRODUCT = MobileBy.id("container_product");
     waitUntilPresent(PRODUCT);
-    AndroidElement findAllPRODUCT = driver.findElement(PRODUCT);
-    boolean PRODUCTDisplayed = findAllPRODUCT.isDisplayed();
-    Assertions.assertTrue(PRODUCTDisplayed);
+    AndroidElement findAllProduct = driver.findElement(PRODUCT);
+    boolean ProductDisplayed = findAllProduct.isDisplayed();
+    Assertions.assertTrue(ProductDisplayed);
 
 
     //Click button ADD TO CART IN RESULT SEARCH PAGE
     By ICON_ADD = MobileBy.id("btn_add_to_cart");
-    waitUntilPresent(ICON_ADD);
+    AndroidElement findIconAdd = driver.findElement(ICON_ADD);
+    boolean IconAddDisplayed = findIconAdd.isDisplayed();
+    Assertions.assertTrue(IconAddDisplayed);
     click(ICON_ADD);
 
 
@@ -227,14 +238,14 @@ public class AppiumTest extends PageBaseObject {
 
     
     //Verify Object In page bucket
-    By STOCKTOKO = MobileBy.id("tv_seller");
-    AndroidElement findSTOCKTOKO = driver.findElement(STOCKTOKO);
-    boolean STOCKTOKODisplayed = findSTOCKTOKO.isDisplayed();
-    Assertions.assertTrue(STOCKTOKODisplayed);
+    By STOCK_TOKO = MobileBy.id("tv_seller");
+    AndroidElement findStockToko = driver.findElement(STOCK_TOKO);
+    boolean StockTokoDisplayed = findStockToko.isDisplayed();
+    Assertions.assertTrue(StockTokoDisplayed);
   }
  //test
   @Test
-  public void changepasswordVALID() {
+  public void ChangePasswordValid() {
     //call method login
     loginWithValidData();
     
@@ -244,11 +255,19 @@ public class AppiumTest extends PageBaseObject {
   
     //Click Account setting
     By BUTTON_ACCOUNT_SET= MobileBy.id("tv_menu_name");
+    AndroidElement findButtonAccountSet = driver.findElement(BUTTON_ACCOUNT_SET);
+    boolean ButtonAccountSetDisplayed = findButtonAccountSet.isDisplayed();
+    Assertions.assertTrue(ButtonAccountSetDisplayed);
     click(BUTTON_ACCOUNT_SET);
 
     //Button change pw
     By BUTTON_CHANGE_PW = MobileBy.id("container_menu_name");
+    AndroidElement findButtonChangePw = driver.findElement(BUTTON_CHANGE_PW);
+    boolean ButtonChangePwDisplayed = findButtonChangePw.isDisplayed();
+    Assertions.assertTrue(ButtonChangePwDisplayed);
     click(BUTTON_CHANGE_PW);
+
+
     // Input PW Old
     By INPUT_PASSWORD_OLD = MobileBy.id("etCurrentPassword");
     input(INPUT_PASSWORD_OLD, "Yasmin22");
