@@ -9,11 +9,8 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Driver;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import javax.swing.text.html.parser.Element;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -143,15 +140,14 @@ public class AppiumTest extends PageBaseObject {
 
     //Click Button Add To Cart on PDP page
     By ICON_ADD = MobileBy.id("btn_add_to_cart");
-    AndroidElement findIconAdd = driver.findElement(ICON_ADD);
-    boolean IconAddDisplayed = findIconAdd.isDisplayed();
+    AndroidElement findallIconAdd = driver.findElement(ICON_ADD);
+    boolean IconAddDisplayed = findallIconAdd.isDisplayed();
     Assertions.assertTrue(IconAddDisplayed);
     click(ICON_ADD);
-
-     //Click Button Backet After redirect to Shopping Page
-    By ICON_BACKET = MobileBy.id("iv_basket");
-    waitUntilPresent(ICON_BACKET);
-    click(ICON_BACKET);
+     //Click Button Basket After redirect to Shopping Page
+    By ICON_BASKET = MobileBy.id("iv_basket");
+    waitUntilPresent(ICON_BASKET);
+    click(ICON_BASKET);
 
     //Verify Object on Page Bucket
     By STOCK_TOKO = MobileBy.id("tv_seller");
@@ -161,7 +157,7 @@ public class AppiumTest extends PageBaseObject {
   
   }
   //Test Add To Cart on Shopping Page
-    @Test
+  @Test
   public void AddToCartShoopingPage() {
     
     //call method loginValid
@@ -181,16 +177,15 @@ public class AppiumTest extends PageBaseObject {
     
     //Click Button Add To Cart on Shopping Page
     By ICON_ADD = MobileBy.id("btn_add_to_cart");
-    AndroidElement findIconAdd = driver.findElement(ICON_ADD);
-    boolean IconAddDisplayed = findIconAdd.isDisplayed();
+    AndroidElement findallIconAdd = driver.findElement(ICON_ADD);
+    boolean IconAddDisplayed = findallIconAdd.isDisplayed();
     Assertions.assertTrue(IconAddDisplayed);
-    click(ICON_ADD) ;
+    click(ICON_ADD);
 
-
-    //Click ICON BACKET IN SHOPPING PAGE
-    By ICON_BACKET = MobileBy.id("iv_basket");
-    waitUntilPresent(ICON_BACKET);
-    click(ICON_BACKET);
+    //Click ICON BASKET IN SHOPPING PAGE
+    By ICON_BASKET = MobileBy.id("iv_basket");
+    waitUntilPresent(ICON_BASKET);
+    click(ICON_BASKET);
 
 
     //Verify Object In page bucket
@@ -225,16 +220,16 @@ public class AppiumTest extends PageBaseObject {
 
     //Click button ADD TO CART IN RESULT SEARCH PAGE
     By ICON_ADD = MobileBy.id("btn_add_to_cart");
-    AndroidElement findIconAdd = driver.findElement(ICON_ADD);
-    boolean IconAddDisplayed = findIconAdd.isDisplayed();
+    AndroidElement findallIconAdd = driver.findElement(ICON_ADD);
+    boolean IconAddDisplayed = findallIconAdd.isDisplayed();
     Assertions.assertTrue(IconAddDisplayed);
     click(ICON_ADD);
 
 
-    //Click ICON BACKET IN RESULT SEARCH PAGE
-    By ICON_BACKET = MobileBy.id("iv_basket");
-    waitUntilPresent(ICON_BACKET);
-    click(ICON_BACKET);
+    //Click ICON BASKET IN RESULT SEARCH PAGE
+    By ICON_BASKET = MobileBy.id("iv_basket");
+    waitUntilPresent(ICON_BASKET);
+    click(ICON_BASKET);
 
     
     //Verify Object In page bucket
@@ -243,7 +238,7 @@ public class AppiumTest extends PageBaseObject {
     boolean StockTokoDisplayed = findStockToko.isDisplayed();
     Assertions.assertTrue(StockTokoDisplayed);
   }
- //test
+//  test Change Password Valid
   @Test
   public void ChangePasswordValid() {
     //call method login
@@ -255,15 +250,15 @@ public class AppiumTest extends PageBaseObject {
   
     //Click Account setting
     By BUTTON_ACCOUNT_SET= MobileBy.id("tv_menu_name");
-    AndroidElement findButtonAccountSet = driver.findElement(BUTTON_ACCOUNT_SET);
-    boolean ButtonAccountSetDisplayed = findButtonAccountSet.isDisplayed();
+    AndroidElement findAllButtonAccountSet = driver.findElement(BUTTON_ACCOUNT_SET);
+    boolean ButtonAccountSetDisplayed = findAllButtonAccountSet.isDisplayed();
     Assertions.assertTrue(ButtonAccountSetDisplayed);
     click(BUTTON_ACCOUNT_SET);
 
     //Button change pw
     By BUTTON_CHANGE_PW = MobileBy.id("container_menu_name");
-    AndroidElement findButtonChangePw = driver.findElement(BUTTON_CHANGE_PW);
-    boolean ButtonChangePwDisplayed = findButtonChangePw.isDisplayed();
+    AndroidElement findAllButtonChangePw = driver.findElement(BUTTON_CHANGE_PW);
+    boolean ButtonChangePwDisplayed = findAllButtonChangePw.isDisplayed();
     Assertions.assertTrue(ButtonChangePwDisplayed);
     click(BUTTON_CHANGE_PW);
 
@@ -289,4 +284,94 @@ public class AppiumTest extends PageBaseObject {
     Assertions.assertEquals("Password diubah!",getText(LABEL_SUCCES),"Kata Sandi lama Anda salah");
 
 }
+  //test Choose Product ULTRA MILK Susu UHT Coklat 250 ml on shopping page
+  @Test
+  public void AddToCartUltraMilk() {
+    //Call Method Login
+    loginWithValidData();
+
+    //
+     By ICON_SHOPPING = MobileBy.id("iv_shopping") ;
+    waitUntilPresent(ICON_SHOPPING);
+    click(ICON_SHOPPING);
+
+   
+
+    // Choose Product on shopping page
+    By PRODUCT = MobileBy.id("txt_product_name");
+    List<AndroidElement> elements = driver.findElements(PRODUCT);
+    for (AndroidElement element : elements) {
+            if (element.getText().equals("ULTRA MILK Susu UHT Coklat 250 ml")) { 
+               element.click();
+                break;
+            }
+        }
+
+      
+
+    By ICON_ADD = MobileBy.id("btn_add_to_cart");
+    AndroidElement findallIconAdd = driver.findElement(ICON_ADD);
+    boolean IconAddDisplayed = findallIconAdd.isDisplayed();
+    Assertions.assertTrue(IconAddDisplayed);
+    click(ICON_ADD);
+
+    //Click Icon Basket in Shopping Page
+    By ICON_BASKET = MobileBy.id("iv_basket");
+    waitUntilPresent(ICON_BASKET);
+    click(ICON_BASKET);
+
+    
+    //Verify Object In page busket
+    By STOCK_TOKO = MobileBy.id("tv_seller");
+    AndroidElement findStockToko = driver.findElement(STOCK_TOKO);
+    boolean StockTokoDisplayed = findStockToko.isDisplayed();
+    Assertions.assertTrue(StockTokoDisplayed);
+
+   }
+  //test Choose Product Tehbotol SOSRO Minuman Teh Original 350 ml on shopping page
+  @Test
+  public void AddToCartTehbotolSosro() {
+    //Call Method Login
+    loginWithValidData();
+
+    //
+     By ICON_SHOPPING = MobileBy.id("iv_shopping") ;
+    waitUntilPresent(ICON_SHOPPING);
+    click(ICON_SHOPPING);
+
+   
+    //Scroll helper  
+    find(MobileBy.AndroidUIAutomator(String.format("new UiScrollable(new UiSelector().resourceIdMatches(\".*%s.*\")"
+    + ".scrollable(true)).scrollIntoView(new UiSelector().text(\"%s\"))", "rv_content", "Tehbotol SOSRO Minuman Teh Original 350 ml")));
+      
+
+    By PRODUCT = MobileBy.id("txt_product_name");
+    List<AndroidElement> elements = driver.findElements(PRODUCT);
+    for (AndroidElement element : elements) {
+            if (element.getText().equals("Tehbotol SOSRO Minuman Teh Original 350 ml")) { 
+               element.click();
+                break;
+            }
+        }
+    
+    
+    By ICON_ADD = MobileBy.id("btn_add_to_cart");
+    AndroidElement findallIconAdd = driver.findElement(ICON_ADD);
+    boolean IconAddDisplayed = findallIconAdd.isDisplayed();
+    Assertions.assertTrue(IconAddDisplayed);
+    click(ICON_ADD);
+
+    //Click Icon Basket 
+    By ICON_BASKET = MobileBy.id("iv_basket");
+    waitUntilPresent(ICON_BASKET);
+    click(ICON_BASKET);
+
+    
+    //Verify Object In page busket
+    By STOCK_TOKO = MobileBy.id("tv_seller");
+    AndroidElement findStockToko = driver.findElement(STOCK_TOKO);
+    boolean StockTokoDisplayed = findStockToko.isDisplayed();
+    Assertions.assertTrue(StockTokoDisplayed);
+    }
+
 }
