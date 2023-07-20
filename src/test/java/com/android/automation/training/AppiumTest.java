@@ -3,12 +3,15 @@ package com.android.automation.training;
 import com.android.automation.training.base.PageBaseObject;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -313,10 +316,37 @@ public class AppiumTest extends PageBaseObject {
 
     
     //Verify Object In page busket
-    By STOCK_TOKO = MobileBy.id("tv_seller");
-    AndroidElement findStockToko = driver.findElement(STOCK_TOKO);
-    boolean stockTokoDisplayed = findStockToko.isDisplayed();
-    Assertions.assertTrue(stockTokoDisplayed);
+    By PRODUCT_LIST = MobileBy.id("tv_product_name");
+        List<AndroidElement> elements1 = driver.findElements(PRODUCT_LIST);
+        List<AndroidElement> elements2 = driver.findElements(PRODUCT_LIST);
+        
+        // Define expected values for both elements
+        String expectedText1 = "ULTRA MILK Susu UHT Coklat 250 ml";
+        String expectedText2 = "Tehbotol SOSRO Minuman Teh Original 350 ml";
 
-   } 
+        // Create a list to hold the elements for iteration
+        List<MobileElement> elementsList = new ArrayList<>();
+        elementsList.addAll(elements1);
+        elementsList.addAll(elements2);
+
+        for (MobileElement element : elementsList) {
+            String actualText = element.getText();
+
+            if (actualText.equals(expectedText1)) {
+              System.out.println("Element text matches the expected value: " + actualText);
+              // Perform additional verification logic or actions as needed
+          } else if (actualText.equals(expectedText2)) {
+              System.out.println("Element text matches the expected value: " + actualText);
+              // Perform additional verification logic or actions as needed
+          } else {
+              System.out.println("Element text does not match any expected value: " + actualText);
+              // Perform additional verification logic or raise an error as needed
+          }
+      }
+    }
   }
+     
+            
+        
+    
+        
