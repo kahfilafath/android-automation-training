@@ -317,35 +317,31 @@ public class AppiumTest extends PageBaseObject {
     
     //Verify Object In page busket
     By PRODUCT_LIST = MobileBy.id("tv_product_name");
-        List<AndroidElement> elements1 = driver.findElements(PRODUCT_LIST);
-        List<AndroidElement> elements2 = driver.findElements(PRODUCT_LIST);
+        List<AndroidElement> elements = driver.findElements(PRODUCT_LIST);
+        // List<String> ExpectedData = driver.findElements(PRODUCT_LIST);
         
         // Define expected values for both elements
-        String expectedText1 = "ULTRA MILK Susu UHT Coklat 250 ml";
-        String expectedText2 = "Tehbotol SOSRO Minuman Teh Original 350 ml";
+        List<String> expectedData = new ArrayList<>();
+        expectedData.add("ULTRA MILK Susu UHT Coklat 250 ml");
+        expectedData.add("Tehbotol SOSRO Minuman Teh Original 350 ml");
 
         // Create a list to hold the elements for iteration
-        List<MobileElement> elementsList = new ArrayList<>();
-        elementsList.addAll(elements1);
-        elementsList.addAll(elements2);
+        List<AndroidElement> elementsList = new ArrayList<>();
+        elementsList.addAll(elements);
 
-        for (MobileElement element : elementsList) {
-            String actualText = element.getText();
+        List<String> actualDataList = new ArrayList<>();
+        actualDataList.add("ULTRA MILK Susu UHT Coklat 250 ml");
+        actualDataList.add("Tehbotol SOSRO Minuman Teh Original 350 ml");
 
-            if (actualText.equals(expectedText1)) {
-              System.out.println("Element text matches the expected value: " + actualText);
-              // Perform additional verification logic or actions as needed
-          } else if (actualText.equals(expectedText2)) {
-              System.out.println("Element text matches the expected value: " + actualText);
-              // Perform additional verification logic or actions as needed
-          } else {
-              System.out.println("Element text does not match any expected value: " + actualText);
-              // Perform additional verification logic or raise an error as needed
+        for (MobileElement element : elementsList){
+          for(String actualData : expectedData) {
+            actualData.equals(element.getText());
+            Assertions.assertEquals(expectedData, actualDataList);
           }
+        }     
       }
     }
-  }
-     
+
             
         
     
