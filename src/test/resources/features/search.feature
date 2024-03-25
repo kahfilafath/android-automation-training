@@ -11,7 +11,6 @@ Feature: Search
     Then user click Nanti on User Guide
 
   Scenario: Verify user should discover the product after searching it with the correct keyword on the search bar
-
     Given user on the HomePage
     When user click field search
     And user search the product "ultra milk susu uht coklat" on the search bar
