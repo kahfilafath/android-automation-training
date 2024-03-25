@@ -4,6 +4,8 @@ import com.android.automation.training.drivers.AndroidDriverInit;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import java.util.List;
+
+import io.cucumber.plugin.event.Result;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -43,6 +45,9 @@ public class PageBaseObject extends AndroidDriverInit {
   public void waitUntilTextPresent(By locator, String text) {
     WebDriverWait wait = new WebDriverWait(driver, 15);
     wait.until(ExpectedConditions.textToBePresentInElement(find(locator), text));
+  }
+  public Boolean isDisplayed(By locator){
+    return find(locator).isDisplayed();
   }
 
 }
