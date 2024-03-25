@@ -15,7 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class AppiumTest_Kahfi extends PageBaseObject {
+public class AppiumTest extends PageBaseObject {
 
   public AndroidDriver<AndroidElement> androidDriverInit() {
     DesiredCapabilities caps = new DesiredCapabilities();
@@ -46,31 +46,32 @@ public class AppiumTest_Kahfi extends PageBaseObject {
   @Test
   public void verifyWelcomeScreenIsWellDisplayedAfterLaunchedApp() {
     //call driver method to create session (mandatory step to run automation)
-    AndroidDriver<AndroidElement> driver = androidDriverInit();
+    //AndroidDriver<AndroidElement> driver = androidDriverInit();
+    initialize();
     //Initialize locators & find the element on the welcome screen
     By IMG_ALFAMART = MobileBy.id("iv_logo");
-    AndroidElement findAlfaImage = driver.findElement(IMG_ALFAMART);
+    //AndroidElement findAlfaImage = driver.findElement(IMG_ALFAMART);
     By BUTTON_PROMO = MobileBy.id("btn_promo");
-    AndroidElement findButtonPromo = driver.findElement(BUTTON_PROMO);
+    //AndroidElement findButtonPromo = driver.findElement(BUTTON_PROMO);
     By BUTTON_STORE = MobileBy.id("btn_store");
-    AndroidElement findStoreBtn = driver.findElement(BUTTON_STORE);
+    //AndroidElement findStoreBtn = driver.findElement(BUTTON_STORE);
     By LABEL_WELCOME_SCREEN = MobileBy.id("txt_title");
-    AndroidElement findWelcomeScreen = driver.findElement(LABEL_WELCOME_SCREEN);
+    //AndroidElement findWelcomeScreen = driver.findElement(LABEL_WELCOME_SCREEN);
 
     //call the methods to perform action & verify the acceptance criteria on the welcome screen
-    boolean imgAlfaDisplayed = findAlfaImage.isDisplayed();
-    Assertions.assertTrue(imgAlfaDisplayed, "Alfamart icon is not exist!");
+    //boolean imgAlfaDisplayed = findAlfaImage.isDisplayed();
+    Assertions.assertTrue(isDisplayed(IMG_ALFAMART), "Alfamart icon is not exist!");
 
-    boolean btnPromoDisplayed = findButtonPromo.isDisplayed();
-    Assertions.assertTrue(btnPromoDisplayed, "Button Promo is not exist!");
+    //boolean btnPromoDisplayed = findButtonPromo.isDisplayed();
+    Assertions.assertTrue(isDisplayed(BUTTON_PROMO), "Button Promo is not exist!");
 
-    Assertions.assertTrue(findStoreBtn.isDisplayed(), "Button Store is not exist!");
-    Assertions.assertEquals("Selamat Datang di Alfagift!", findWelcomeScreen.getText(),
+    Assertions.assertTrue(isDisplayed(BUTTON_STORE), "Button Store is not exist!");
+    Assertions.assertEquals("Selamat Datang di Alfagift!", getText(LABEL_WELCOME_SCREEN),
         "Format Greeting Salah!");
 
   }
 
-  //Sample test using Page Object Model
+  //Sample test using Page Object Model (design pattern that create object repository to store all elements)
   @Test
   public void loginWithValidData() {
     //call driver method to create session (mandatory step to run automation)

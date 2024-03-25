@@ -44,5 +44,8 @@ public class PageBaseObject extends AndroidDriverInit {
     WebDriverWait wait = new WebDriverWait(driver, 15);
     wait.until(ExpectedConditions.textToBePresentInElement(find(locator), text));
   }
+  public Boolean isDisplayed(By locator){
+    return find(locator).isDisplayed();
+  }
 
 }
