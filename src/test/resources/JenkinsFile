@@ -8,5 +8,10 @@ pipeline {
                 sh './gradlew --version'
             }
         }
+        stage('test'){
+          steps {
+            echo 'This is stage test'
+          }
+        }
     }
 }
