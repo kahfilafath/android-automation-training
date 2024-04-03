@@ -1,7 +1,8 @@
 //Jenkinsfile (Declarative Pipeline)
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { docker { image 'gradle:8.2.0-jdk17-alpine' } }
+    agent  any
+    //{ docker { image 'gradle:8.2.0-jdk17-alpine' } }
     stages {
         stage('build') {
             steps {
@@ -10,7 +11,7 @@ pipeline {
         }
         stage('test'){
           steps {
-            echo 'This is stage test'
+            sh './gradlew test cucumber'
           }
         }
     }
