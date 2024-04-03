@@ -9,7 +9,9 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class AndroidDriverInit {
   public static AndroidDriver<AndroidElement> driver;
   public void initialize(){
@@ -18,12 +20,12 @@ public class AndroidDriverInit {
     caps.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
     caps.setCapability(MobileCapabilityType.DEVICE_NAME, "device");
     caps.setCapability(MobileCapabilityType.UDID, "emulator-5554");
-    caps.setCapability(MobileCapabilityType.APP, "D:/Automation/app1.apk");
+    caps.setCapability(MobileCapabilityType.APP, "D://app/app.apk");
     caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UIAutomator2");
     //additional
     caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
     caps.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
-    caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.alfamart.alfagift.debug");
+    caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.alfamart.alfagift.beta");
 
     //url appium
     String url = "http://localhost:4723";
