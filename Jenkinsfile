@@ -6,12 +6,12 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh './gradlew --version'
+                bat './gradlew --version'
             }
         }
         stage('test'){
           steps {
-            sh './gradlew test cucumber'
+            bat './gradlew test cucumber'
           }
         }
     }
