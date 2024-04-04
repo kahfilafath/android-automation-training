@@ -1,4 +1,4 @@
-Feature:
+Feature: Login
   as user i want to login Alfagift with phone number and password
 
   @TC001
