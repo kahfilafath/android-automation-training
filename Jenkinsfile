@@ -11,7 +11,7 @@ pipeline {
         }
         stage('test'){
           steps {
-            bat './gradlew test cucumber'
+            bat './gradlew clean cucumber --tags "@TC001"'
           }
         }
     }

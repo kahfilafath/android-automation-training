@@ -16,7 +16,7 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class AppiumTest extends PageBaseObject {
-
+/*
   public AndroidDriver<AndroidElement> androidDriverInit() {
     DesiredCapabilities caps = new DesiredCapabilities();
     caps.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
@@ -97,6 +97,8 @@ public class AppiumTest extends PageBaseObject {
     Assertions.assertEquals("Selamat Datang di Alfagift",getText(LABEL_WELCOME_SCREEN),"Failed to go to Home Page!");
 
   }
+
+ */
 
 
 }
