@@ -2,12 +2,10 @@ package com.android.automation.training;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
-import io.cucumber.spring.CucumberContextConfiguration;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.junit.runner.RunWith;
 
   @RunWith(Cucumber.class)
-  @CucumberContextConfiguration
   @CucumberOptions(
       glue = {"com/android/automation/training"},
       plugin = {"json:build/cucumber.json", "pretty", "html:build/result.html"},
