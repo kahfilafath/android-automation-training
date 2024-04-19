@@ -15,5 +15,21 @@ pipeline {
             sh './gradlew clean cucumber --tags "@TC001"'
           }
         }
+        stage('Generate Report'){
+            steps{
+                cucumber buildStatus: 'UNSTABLE',
+                      reportTitle: 'My report',
+                      fileIncludePattern: '**/cucumber.json',
+                      jsonReportDirectory: './reports',
+                      trendsLimit: 10,
+                      classifications: [
+                          [
+                             'key': 'Browser',
+                             'value': 'Chrome'
+                          ]
+                      ]
+            }
+        }
+
     }
 }
