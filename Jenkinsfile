@@ -19,12 +19,13 @@ pipeline {
             steps{
                 cucumber buildStatus: 'UNSTABLE',
                       reportTitle: 'My report',
-                      fileIncludePattern: '**/*.json',
+                      fileIncludePattern: '**/cucumber.json',
+                      jsonReportDirectory: 'target',
                       trendsLimit: 10,
                       classifications: [
                           [
                              'key': 'Browser',
-                              'value': 'Firefox'
+                              'value': 'Chrome'
                           ]
                       ]
             }
