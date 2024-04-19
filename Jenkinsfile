@@ -6,12 +6,12 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                bat './gradlew --version'
+                sh './gradlew --version'
             }
         }
         stage('test'){
           steps {
-            bat './gradlew clean cucumber --tags "@TC001"'
+            sh './gradlew clean cucumber --tags "@TC001"'
           }
         }
     }
