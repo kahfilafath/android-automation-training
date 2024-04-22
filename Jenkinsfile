@@ -22,7 +22,7 @@ pipeline {
              cucumber buildStatus: 'UNSTABLE',
                       reportTitle: 'cucumber-report',
                       fileIncludePattern: '**/cucumber.json',
-                      jsonReportDirectory: 'target',
+                      jsonReportDirectory: 'build',
                       trendsLimit: 10,
                       classifications: [
                         [
