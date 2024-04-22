@@ -11,9 +11,27 @@ pipeline {
             }
         }
         stage('test'){
+          options {
+            catchError(message: "Test failed", stageResult: 'UNSTABLE', buildResult: 'UNSTABLE')
+          }
           steps {
             sh './gradlew clean cucumber --tags "@TC001"'
           }
+        }
+        stage('Generate Report'){
+           steps{
+             cucumber buildStatus: 'UNSTABLE',
+                      reportTitle: 'cucumber-report',
+                      fileIncludePattern: '**/cucumber.json',
+                      jsonReportDirectory: 'build',
+                      trendsLimit: 10,
+                      classifications: [
+                        [
+                           'key': 'Browser',
+                           'value': 'Chrome'
+                        ]
+                      ]
+           }
         }
     }
 }

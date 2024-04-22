@@ -44,6 +44,7 @@ public class LoginSteps extends PageBaseObject{
     @Then("user click Nanti on User Guide")
     public void userClickNantiOnUserGuide() {
         By BUTTON_LATER = MobileBy.id("btn_later");
+        waitUntilPresent(BUTTON_LATER);
         click(BUTTON_LATER);
     }
 
