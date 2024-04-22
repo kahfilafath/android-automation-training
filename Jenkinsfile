@@ -14,7 +14,7 @@ pipeline {
             catchError(message: "Test failed", stageResult: 'UNSTABLE', buildResult: 'UNSTABLE')
           }
           steps {
-            bat './gradlew clean cucumber --tags "@TC001"'
+            bat './gradlew clean cucumber --tags "@TC001 or @TC002"'
           }
         }
         stage('Generate Report'){
@@ -22,7 +22,7 @@ pipeline {
              cucumber buildStatus: 'UNSTABLE',
                       reportTitle: 'cucumber-report',
                       fileIncludePattern: '**/cucumber.json',
-                      jsonReportDirectory: 'target',
+                      jsonReportDirectory: 'build',
                       trendsLimit: 10,
                       classifications: [
                         [
