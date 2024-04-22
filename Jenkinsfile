@@ -10,13 +10,11 @@ pipeline {
             }
         }
         stage('test'){
+          options {
+            catchError(message: "Test failed", stageResult: 'UNSTABLE', buildResult: 'UNSTABLE')
+          }
           steps {
             bat './gradlew clean cucumber --tags "@TC001"'
-            catchError {
-               message: "Test failed",
-               stageResult: 'UNSTABLE',
-               buildResult: 'UNSTABLE'
-             }
           }
         }
         stage('Generate Report'){
