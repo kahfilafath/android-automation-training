@@ -34,7 +34,7 @@ pipeline {
            post {
              always {
                 steps{
-                  emailext subject: ''${env.PROJECT_NAME} '- Build' [${env.BUILD_NUMBER}]'-'${env.BUILD_STATUS},
+                  emailext subject: ''${env.PROJECT_NAME} '- Build' [${env.BUILD_NUMBER}]'-'${env.BUILD_STATUS}'',
                          to: 'qagli037@gmail.com',
                          body: '<p>'${env.PROJECT_NAME}' - Build # '[${env.BUILD_NUMBER}]'-'${env.BUILD_STATUS}'</p>
                                 <p> Check console output at' ${env.BUILD_URL}' to view the results.</p>'
