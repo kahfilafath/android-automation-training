@@ -33,10 +33,11 @@ pipeline {
            }
            post {
              always {
-                 emailext subject: ''+ env.PROJECT_NAME +' '+ env.BUILD_NUMBER +' '+ env.BUILD_STATUS +'',
+                 emailext subject: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                          body: """<p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+                          <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
                           replyTo: 'no-reply@gmail.com',
-                          to: 'qagli037@gmail.com',
-                          body: '<p>'+ env.PROJECT_NAME +' '+ env.BUILD_NUMBER +' '+ env.BUILD_STATUS +'</p><p> Check console output at '+ env.BUILD_URL +' to view the results.</p>'
+                          to: 'qagli037@gmail.com'
              }
            }
         }
